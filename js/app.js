@@ -1,23 +1,24 @@
-new Vue({
+let vm = new Vue({
 
     el: '#app',
 
     data: {
-        message: 'salut les gens',
-        link: 'http://grafikart.fr',
-        success: true,
-        persons: ['Jonathan', 'Clarisse', 'Benjamin', 'Pierre']
+
+        firstname: 'Jean',
+        lastname: 'Delatour'
+
     },
 
-    methods: {
-        close: function() {
-            this.success = false
-        },
-        style: function() {
-            if (this.success) {
-                return { background: '#00FF00' }
-            } else {
-                return { background: '#FF0000' }
+    computed: {
+
+        fullname: {
+            get: function() {
+                return this.firstname + ' ' + this.lastname
+            },
+            set: function(value) {
+                let parts = value.split(' ')
+                this.firstname = parts[0]
+                this.lastname = parts[1]
             }
         }
     }
